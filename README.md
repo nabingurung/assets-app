@@ -52,6 +52,18 @@ Optional settings can be passed as environment variables (or a `.env` file next 
 | `BTS_ADMIN_PASSWORD` | Password for the admin account on first start        | `admin2016`             |
 | `BTS_JWT_SECRET`     | Secret used to sign login tokens (32+ characters)    | random key generated on first start, saved to `data/jwt.key` |
 
+## Install on the BTS computer from the published image
+
+Every push to `main` runs the tests and publishes a multi-architecture image to GitHub Container Registry as `ghcr.io/nabingurung/bts-asset-management:latest` (see `.github/workflows/docker-publish.yml`).
+
+On the BTS computer (Windows with Docker Desktop):
+
+1. Download `docker-compose.deploy.yml` from this repository into a folder such as `C:\bts-assets` and rename it to `docker-compose.yml`.
+2. Open a terminal in that folder and run `docker compose up -d`.
+3. Open <http://localhost:8080>.
+
+To update: `docker compose pull` then `docker compose up -d`. The `data` folder is kept.
+
 ## Run for development
 
 Backend (API on <http://localhost:5102>, OpenAPI document at `/openapi/v1.json`):

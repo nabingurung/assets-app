@@ -1,0 +1,25 @@
+# Deploy-only compose file for the BTS computer.
+# It pulls the prebuilt image from GitHub Container Registry; no source code, .NET, or Node needed.
+#
+#   1. Install Docker Desktop.
+#   2. Put this file in a folder such as C:\bts-assets (rename it to docker-compose.yml).
+#   3. In that folder run:  docker compose up -d
+#   4. Open http://localhost:8080  (login: admin / admin2016, then change the password)
+#
+# Update later with:  docker compose pull && docker compose up -d
+services:
+  bts-app:
+    image: ghcr.io/nabingurung/bts-asset-management:latest
+    container_name: bts-asset-mgmt
+    ports:
+      - "8080:8080"
+    volumes:
+      # Database and backups are plain files in ./data next to this file.
+      - ./data:/app/data
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ConnectionStrings__DefaultConnection=Data Source=/app/data/bts.db
+      # Applied only when the database is first created.
+      - Admin__DefaultPassword=admin2016
+    restart: unless-stopped
