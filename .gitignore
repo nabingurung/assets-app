@@ -1,0 +1,21 @@
+# .NET
+**/bin/
+**/obj/
+*.user
+.vs/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Local data
+data/*.db
+data/*.db-*
+data/backups/
+
+# Env / IDE
+.env
+.idea/
+.vscode/
+.DS_Store
+data/jwt.key

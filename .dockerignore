@@ -1,0 +1,21 @@
+# Dependencies and build output
+**/node_modules
+**/dist
+**/bin
+**/obj
+**/.vs
+**/.vscode
+**/.idea
+
+# Local data - never bake the database into the image
+data/
+*.db
+*.db-shm
+*.db-wal
+
+# Misc
+.git
+.gitignore
+**/*.md
+!README.md
+.env

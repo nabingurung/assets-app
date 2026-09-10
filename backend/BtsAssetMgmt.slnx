@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BtsAssetMgmt.Api/BtsAssetMgmt.Api.csproj" />
+  <Project Path="BtsAssetMgmt.Core/BtsAssetMgmt.Core.csproj" />
+  <Project Path="BtsAssetMgmt.Infrastructure/BtsAssetMgmt.Infrastructure.csproj" />
+  <Project Path="BtsAssetMgmt.Tests/BtsAssetMgmt.Tests.csproj" />
+</Solution>

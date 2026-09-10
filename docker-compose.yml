@@ -1,0 +1,21 @@
+services:
+  bts-app:
+    build: .
+    image: bts-asset-management:latest
+    container_name: bts-asset-mgmt
+    ports:
+      # Open http://localhost:8080 on the BTS computer.
+      - "8080:8080"
+    volumes:
+      # Bind-mount so the database and backups are plain files on the host (./data).
+      - ./data:/app/data
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ConnectionStrings__DefaultConnection=Data Source=/app/data/bts.db
+      # Optional: a fixed token-signing key (32+ chars). If empty, a random key is generated
+      # on first start and stored in ./data/jwt.key.
+      - Jwt__Secret=${BTS_JWT_SECRET:-}
+      # Password for the admin account, applied only when the database is first created.
+      - Admin__DefaultPassword=${BTS_ADMIN_PASSWORD:-admin2016}
+    restart: unless-stopped
